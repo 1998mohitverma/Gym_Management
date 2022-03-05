@@ -1,0 +1,94 @@
+{% extends 'gym/base.html' %}
+{% load static %}
+{% block title %}Member{% endblock title %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-6">
+            <img src="{% static 'image/i.jpg' %}" style="width:100%;" alt="">
+        </div>
+
+        <div class="col-sm-6">
+        <form action="" method="POST" enctype="multipart/form-data">
+        <h2 class="text-center fonr-weight-bold text-primary">Add New Gym Member</h2>
+        <hr>
+        {% csrf_token %}
+
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" name="name" id="name" required class="form-control" placeholder="">
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email-Id</label>
+                <input type="email" name="email" id="email" required class="form-control" placeholder="">
+            </div>
+
+            <div class="form-group">
+                <label for="contact">Contact</label>
+                <input type="number" name="contact" id="contact" required class="form-control" placeholder="">
+            </div>
+
+            <div class="form-group">
+                <label for="age">Age</label>
+                <input type="number" name="age" id="age" required class="form-control" placeholder="">
+            </div>
+
+            <div class="form-group">
+                <label for="gender">Gender</label>
+                <input type="radio" name="gender" id="gender" value="male"> Male
+                <input type="radio" name="gender" id="gender" value="female"> Female
+            </div>
+
+            <div class="form-group">
+                <label for="plan">Plan</label>
+                <select name="plan" id="plan" required class="form-control">
+                    {% for i in plans %}
+                        <option value="{{i.name}}">{{i.name}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="photo">Photo</label>
+                <input type="file" name="photo" id="photo" required class="form-control" placeholder="">
+            </div>
+
+            <div class="form-group">
+                <label for="joindate">Joining Date</label>
+                <input type="date" name="joindate" id="joindate" required class="form-control" placeholder="">
+            </div>
+
+            <div class="form-group">
+                <label for="expiredate">Expiry Date</label>
+                <input type="date" name="expiredate" id="expiredate" required class="form-control" placeholder="">
+            </div>
+
+            <div class="form-group">
+                <label for="initialamount">Initial Amount</label>
+                <input type="number" name="initialamount" id="initialamount" required class="form-control" placeholder="">
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Add-Member" class="btn btn-primary">
+            </div>
+        </form>
+        </div>
+    </div>
+</div>
+
+{% ifequal error 'no' %}
+    <script>
+        alert('Your Records add Successfully')
+        {% comment %} window.location = ('{% url 'view_member' %}') {% endcomment %}
+    </script>
+{% endifequal %}
+
+{% ifequal error 'yes' %}
+    <script>
+        alert('Something Went Wrong ! Try Again')
+    </script>
+{% endifequal %}
+
+{% endblock content %}

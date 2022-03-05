@@ -1,0 +1,30 @@
+{% extends 'gym/base.html' %}
+{% load static %}
+{% block title %}Home{% endblock title %}
+
+{% block content %}
+<div class="container-fluid text-center" style="margin-top:80px;">
+    <div class="row">
+        <div class="col-sm-3 border enq" style="padding-top:60px;border-radius:50px;height:200px;width:150px;">
+            <h2>{{enq}}</h2>
+            <a href="{% url 'view_enquiry' %}"><h4>Enquiry</h4></a>
+        </div>
+
+        <div class="col-sm-3 border enq" style="padding-top:60px;border-radius:50px;height:200px;">
+            <h2>{{pl}}</h2>
+            <a href="{% url 'view_plan' %}"><h4>Gym Plan</h4></a>
+        </div>
+
+        <div class="col-sm-3 border enq" style="padding-top:60px;border-radius:50px;height:200px;">
+            <h2>{{equ}}</h2>
+            <a href="{% url 'view_equipment' %}"><h4>Equipment</h4></a>
+        </div>
+
+        <div class="col-sm-3 border enq" style="padding-top:60px;border-radius:50px;height:200px;">
+            <h2>{{mem}}</h2>
+            <a href="{% url 'view_member' %}"><h4>Gym Member's</h4></a>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

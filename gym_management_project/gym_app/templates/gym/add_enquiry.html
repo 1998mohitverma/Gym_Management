@@ -1,0 +1,69 @@
+{% extends 'gym/base.html' %}
+{% load static %}
+{% block title %}Enquiry{% endblock title %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-6">
+            <img src="{% static 'image/e.jpg' %}" style="width:100%;" alt="">
+        </div>
+
+        <div class="col-sm-6">
+        <form action="" method="POST">
+        <h2 class="text-center fonr-weight-bold text-primary">Add client Details</h2>
+        <hr>
+        {% csrf_token %}
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" required placeholder="Full Name" name="name" id="name" class="form-control">
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" required placeholder="Ex:name@gmail.com" name="email" id="email" class="form-control">
+            </div>
+
+            <div class="form-group">
+                <label for="contact">Contact</label>
+                <input type="number" required placeholder="Mobile Number" name="contact" id="contact" class="form-control">
+            </div>
+
+            <div class="form-group">
+                <label for="age">Age</label>
+                <input type="number" required placeholder="Ex:15" name="age" id="age" class="form-control">
+            </div>
+
+            <div class="form-group">
+                <label for="gender">Gender</label>
+                <input type="radio" name="gender" id="gender" value="male"> Male
+                <input type="radio" name="gender" id="gender" value="female"> Female
+            </div>
+
+            <div class="form-group">
+                <label for="date">Date</label>
+                <input type="date" required placeholder="Ex:11/02/2021" name="date" id="date" class="form-control">
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Add-Enquiry" class="btn btn-primary">
+            </div>
+        </form>
+        </div>
+    </div>
+</div>
+
+{% ifequal error 'no' %}
+    <script>
+        alert('Your Records add Successfully')
+        window.location = ('{% url 'view_enquiry' %}')
+    </script>
+{% endifequal %}
+
+{% ifequal error 'yes' %}
+    <script>
+        alert('Something Went Wrong ! Try Again')
+    </script>
+{% endifequal %}
+
+{% endblock content %}
